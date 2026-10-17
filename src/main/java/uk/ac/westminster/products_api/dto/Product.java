@@ -38,4 +38,5 @@ public class Product {
     }
 
     // Already done the changes
+    // Missing getters will prevent Jackson from creating the complete JSON body without throwing any exceptions and the response will have a missing attribute.
 }
