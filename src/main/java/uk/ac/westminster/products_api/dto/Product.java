@@ -36,4 +36,6 @@ public class Product {
     public void setPrice(Double price) {
         this.price = price;
     }
+
+    // Already done the changes
 }
