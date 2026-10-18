@@ -3,7 +3,7 @@ package uk.ac.westminster.products_api.dto;
 public class Product {
     private Long id;
     private String name;
-    private Double price;
+    private double price;
 
     public Product(Long id, String name, Double price) {
         this.id = id;
@@ -21,7 +21,7 @@ public class Product {
         return name;
     }
 
-    public Double getPrice() {
+    public double getPrice() {
         return price;
     }
 
