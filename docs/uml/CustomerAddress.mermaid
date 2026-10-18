@@ -3,11 +3,15 @@ classDiagram
         - Long id
         - String name
         - Address address
+        - String[] tags
+        - int customerCount$
         + Customer()
-        + Customer(Long id, String name, Address, address)
+        + Customer(Long id, String name, Address address)
         + getId() Long
         + getName() String
         + getAddress() Address
+        + getTags() String[]
+        + getCustomerCount() int$
     }
 
     class Address {
@@ -18,7 +22,7 @@ classDiagram
         + Address(String street, String city, String postCode)
         + getStreet() String
         + getCity() String
-        + getPostCode String
+        + getPostCode() String
     }
 
     Customer --> Address
