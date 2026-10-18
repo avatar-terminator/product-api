@@ -21,6 +21,7 @@ classDiagram
         + getProductById(Long id) Product
         + deleteProduct(Long id) void
         + findByName(String name) Product
+        + cheaperThan(Double amount) List~Product~
     }
 
     class ProductController {
@@ -30,6 +31,7 @@ classDiagram
         + addProduct(Product product) Product
         + deleteProduct(Long id) void
         + findByName(String name) Product
+        + cheaperThan(Double amount) List~Product~
     }
 
 

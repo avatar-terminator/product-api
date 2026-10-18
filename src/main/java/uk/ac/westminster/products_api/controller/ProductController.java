@@ -38,4 +38,9 @@ public class ProductController {
     public List<Product> findByName(@PathVariable String name) {
         return productService.findByName(name);
     }
+
+    @GetMapping("/products/cheaper-than")
+    public List<Product> cheaperThan(@RequestParam Double amount) {
+        return productService.cheaperThan(amount);
+    }
 }

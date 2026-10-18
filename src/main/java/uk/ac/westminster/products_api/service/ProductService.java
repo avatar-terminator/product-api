@@ -3,34 +3,36 @@ package uk.ac.westminster.products_api.service;
 import org.springframework.stereotype.Service;
 import uk.ac.westminster.products_api.dto.Product;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class ProductService {
-    private List<Product> products = new ArrayList<>();
+    private Map<Long, Product> productMap = new HashMap<>();
     private Long nextId = 1L;
 
     public List<Product> getAllProducts() {
-        return products;
+        return new ArrayList<>(productMap.values());
     }
 
     public Product addProduct(Product product) {
         product.setId(nextId++);
-        products.add(product);
+        productMap.put(product.getId(), product);
         return product;
     }
 
     public Optional<Product> getProductById(Long id) {
-        return products.stream().filter(p -> p.getId().equals(id)).findFirst();
+        return Optional.ofNullable(productMap.get(id));
     }
 
     public void deleteProduct(Long id) {
-        products.removeIf(p -> p.getId().equals(id));
+        productMap.remove(id);
     }
 
     public List<Product> findByName(String name) {
-       return products.stream().filter(p -> p.getName().contains(name)).toList();
+       return productMap.values().stream().filter(p -> p.getName().contains(name)).toList();
+    }
+
+    public List<Product> cheaperThan(Double amount) {
+        return productMap.values().stream().filter(p -> p.getPrice() < amount).toList();
     }
 }
