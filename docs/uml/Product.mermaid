@@ -12,3 +12,26 @@ classDiagram
         + setName(String name) void
         + setPrice(double price) void
     }
+
+    class ProductService {
+        - List~Product~ products
+        - Long nextId
+        + getAllProducts() List~Product~
+        + addProduct(Product product) Product
+        + getProductById(Long id) Product
+        + deleteProduct(Long id) void
+        + findByName(String name) Product
+    }
+
+    class ProductController {
+        - ProductService productService
+        + getAllProducts() List~Product~
+        + getProductById(Long id) Product
+        + addProduct(Product product) Product
+        + deleteProduct(Long id) void
+        + findByName(String name) Product
+    }
+
+
+    ProductController --> ProductService : uses
+    ProductService --> Product : uses
