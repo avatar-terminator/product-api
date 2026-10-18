@@ -1,0 +1,24 @@
+classDiagram
+    class Customer {
+        - Long id
+        - String name
+        - Address address
+        + Customer()
+        + Customer(Long id, String name, Address, address)
+        + getId() Long
+        + getName() String
+        + getAddress() Address
+    }
+
+    class Address {
+        - String street
+        - String city
+        - String postCode
+        + Address()
+        + Address(String street, String city, String postCode)
+        + getStreet() String
+        + getCity() String
+        + getPostCode String
+    }
+
+    Customer --> Address
