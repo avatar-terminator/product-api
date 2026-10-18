@@ -5,14 +5,20 @@ public class Customer {
     private String name;
     private String email;
     private Address address;
+    private String[] tags;
 
-    public Customer() {}
+    private static int customerCount = 0;
+
+    public Customer() {
+        customerCount ++;
+    }
 
     public Customer(Long id, String name, String email, Address address) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.address = address;
+        customerCount ++;
     }
 
     public Long getId() {
@@ -30,4 +36,13 @@ public class Customer {
     public Address getAddress() {
         return address;
     }
+
+    public String[] getTags() {
+        return tags;
+    }
+
+    public static int getCustomerCount() {
+        return customerCount;
+    }
+
 }
