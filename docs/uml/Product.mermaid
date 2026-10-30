@@ -59,10 +59,21 @@ classDiagram
         + setWeightKg(Double weightKg)
     }
 
+    class BundleProduct {
+        - List~Product~ productList
+        + BundleProduct()
+        + BundleProduct(Long id, String name, Double price)
+        + BundleProduct(Long id, String name, Double price, List~Product~ productList)
+        + getProductList() List~Product~
+        + setProductList(List~Product~ productList) void
+    }
+
     %% Association
     ProductController --> ProductService : uses
     ProductService --> Product : uses
+    BundleProduct --> Product : has
 
     %% Inheritance
     Product <|-- DigitalProduct
     Product <|-- PhysicalProduct
+    Product <|-- BundleProduct

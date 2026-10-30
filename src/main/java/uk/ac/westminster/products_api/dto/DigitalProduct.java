@@ -15,11 +15,6 @@ public class DigitalProduct extends Product {
         super(id, name, price);
     }
 
-    public DigitalProduct(String downloadUrl, Double fileSizeMB) {
-        this.downloadUrl = downloadUrl;
-        this.fileSizeMB = fileSizeMB;
-    }
-
     public DigitalProduct() {}
 
 

@@ -15,6 +15,10 @@ public class PhysicalProduct extends Product{
         this.weightKg = weightKg;
     }
 
+    public PhysicalProduct(long id, String name, Double price) {
+        super(id, name, price);
+    }
+
     public String getDimensions() {
         return this.dimensions;
     }
