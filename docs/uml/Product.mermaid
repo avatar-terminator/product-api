@@ -35,5 +35,34 @@ classDiagram
     }
 
 
+    class DigitalProduct {
+        - String downloadUrl
+        - Double fileSize
+        + DigitalProduct()
+        + DigitalProduct(Long id, String name, Double price)
+        + DigitalProduct(Long id, String name, Double price, String downloadUrl, Double fileSize)
+        + getDownloadUrl() String
+        + getFileSize() Double
+        + setDownloadUrl(String dowloadUrl) void
+        + setFileSize(Double fileSize) void
+    }
+
+    class PhysicalProduct {
+        - String dimensions
+        - Double weightKg
+        + PhysicalProduct()
+        + PhysicalProduct(Long id, String name, Double price)
+        + PhysicalProduct(Long id, String name, Double price, String dimensions, Double weightKg)
+        + getDimensions() String
+        + getWeightKg() Double
+        + setDimensions(String dimensions)
+        + setWeightKg(Double weightKg)
+    }
+
+    %% Association
     ProductController --> ProductService : uses
     ProductService --> Product : uses
+
+    %% Inheritance
+    Product <|-- DigitalProduct
+    Product <|-- PhysicalProduct

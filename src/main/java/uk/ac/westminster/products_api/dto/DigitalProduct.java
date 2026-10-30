@@ -1,5 +1,6 @@
 package uk.ac.westminster.products_api.dto;
 
+// This class was committed in a previous commit.
 public class DigitalProduct extends Product {
     private String downloadUrl;
     private Double fileSizeMB;

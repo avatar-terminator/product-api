@@ -1,6 +1,8 @@
 package uk.ac.westminster.products_api.service;
 
 import org.springframework.stereotype.Service;
+import uk.ac.westminster.products_api.dto.DigitalProduct;
+import uk.ac.westminster.products_api.dto.PhysicalProduct;
 import uk.ac.westminster.products_api.dto.Product;
 
 import java.util.*;
@@ -9,6 +11,14 @@ import java.util.*;
 public class ProductService {
     private Map<Long, Product> productMap = new HashMap<>();
     private Long nextId = 1L;
+
+    public ProductService() {
+
+        productMap.put(nextId, new PhysicalProduct(nextId, "Monitor", 299.99, 5.4, "1280x720"));
+        nextId++;
+        productMap.put(nextId, new DigitalProduct(nextId, "E-Book", 99.99, "url/digital", 3.5));
+        nextId++;
+    }
 
     public List<Product> getAllProducts() {
         return new ArrayList<>(productMap.values());
