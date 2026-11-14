@@ -1,10 +1,12 @@
 classDiagram
     class Product {
+        <<abstract>>
         - Long id
         - String name
         - double price
         + Product()
         + Product(Long id, String name, double price)
+        + getSummary()* String
         + getId() Long
         + getName() String
         + getPrice() double
@@ -22,41 +24,59 @@ classDiagram
         + deleteProduct(Long id) void
         + findByName(String name) Product
         + cheaperThan(Double amount) List~Product~
+        + getAllSummaries() List~String~
     }
 
     class ProductController {
         - ProductService productService
         + getAllProducts() List~Product~
         + getProductById(Long id) Product
-        + addProduct(Product product) Product
+        %% Changed the RequestBody type to DigitalProduct : temporarily
+        + addProduct(DigitalProduct product) Product
         + deleteProduct(Long id) void
         + findByName(String name) Product
         + cheaperThan(Double amount) List~Product~
+        + getAllSummaries() List~String~
     }
 
+    class Discountable {
+        <<interface>>
+        + applyDiscount(double rate)* void
+        + getDiscountedPrice()* double
+    }
 
     class DigitalProduct {
         - String downloadUrl
         - Double fileSize
+        - double discountedPrice
         + DigitalProduct()
         + DigitalProduct(Long id, String name, Double price)
         + DigitalProduct(Long id, String name, Double price, String downloadUrl, Double fileSize)
+        + getSummary() String
+        + applyDiscount(double rate)* void
+        + getDiscountedPrice()* double
         + getDownloadUrl() String
         + getFileSize() Double
         + setDownloadUrl(String dowloadUrl) void
         + setFileSize(Double fileSize) void
+        + setDscountedPrice(Double discountedPrice) void
     }
 
     class PhysicalProduct {
         - String dimensions
         - Double weightKg
+        - double discountedPrice
         + PhysicalProduct()
         + PhysicalProduct(Long id, String name, Double price)
         + PhysicalProduct(Long id, String name, Double price, String dimensions, Double weightKg)
+        + getSSummary()* String
+        + applyDiscount(double rate)* void
+        + getDiscountedPrice() double
         + getDimensions() String
         + getWeightKg() Double
         + setDimensions(String dimensions)
         + setWeightKg(Double weightKg)
+        + setDscountedPrice(Double discountedPrice) void
     }
 
     class BundleProduct {
@@ -74,6 +94,10 @@ classDiagram
     BundleProduct --> Product : has
 
     %% Inheritance
-    Product <|-- DigitalProduct
-    Product <|-- PhysicalProduct
-    Product <|-- BundleProduct
+    Product <|-- DigitalProduct : extends
+    Product <|-- PhysicalProduct : extends
+    Product <|-- BundleProduct : extends
+
+    %% Interface Implementations
+    Discountable <|.. DigitalProduct : implements
+    Discountable <|.. PhysicalProduct : implements

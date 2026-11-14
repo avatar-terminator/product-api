@@ -1,6 +1,6 @@
 package uk.ac.westminster.products_api.dto;
 
-public class Product {
+public abstract class Product {
     private Long id;
     private String name;
     private double price;
@@ -12,6 +12,8 @@ public class Product {
     }
 
     public Product() {}
+
+    public abstract String getSummary();
 
     public Long getId() {
         return id;

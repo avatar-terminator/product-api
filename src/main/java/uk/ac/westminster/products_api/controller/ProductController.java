@@ -2,6 +2,7 @@ package uk.ac.westminster.products_api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import uk.ac.westminster.products_api.dto.DigitalProduct;
 import uk.ac.westminster.products_api.dto.Product;
 import uk.ac.westminster.products_api.service.ProductService;
 
@@ -24,8 +25,10 @@ public class ProductController {
         return productService.getProductById(id).orElse(null);
     }
 
+    // Since Product class is now Abstract Jackson cannot create the Product objects from JSON.
+    // Temporarily changed the Product to DigitalProduct.
     @PostMapping("/products")
-    public Product addProduct(@RequestBody Product product) {
+    public Product addProduct(@RequestBody DigitalProduct product) {
         return productService.addProduct(product);
     }
 
@@ -42,5 +45,10 @@ public class ProductController {
     @GetMapping("/products/cheaper-than")
     public List<Product> cheaperThan(@RequestParam Double amount) {
         return productService.cheaperThan(amount);
+    }
+
+    @GetMapping("/products/summaries")
+    public List<String> getAllSummaries() {
+        return productService.getAllSummaries();
     }
 }
