@@ -84,6 +84,7 @@ classDiagram
         + BundleProduct()
         + BundleProduct(Long id, String name, Double price)
         + BundleProduct(Long id, String name, Double price, List~Product~ productList)
+        + getSummary()* String
         + getProductList() List~Product~
         + setProductList(List~Product~ productList) void
     }

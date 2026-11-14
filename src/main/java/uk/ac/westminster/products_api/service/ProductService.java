@@ -1,10 +1,7 @@
 package uk.ac.westminster.products_api.service;
 
 import org.springframework.stereotype.Service;
-import uk.ac.westminster.products_api.dto.DigitalProduct;
-import uk.ac.westminster.products_api.dto.Discountable;
-import uk.ac.westminster.products_api.dto.PhysicalProduct;
-import uk.ac.westminster.products_api.dto.Product;
+import uk.ac.westminster.products_api.dto.*;
 
 import java.util.*;
 
@@ -17,13 +14,15 @@ public class ProductService {
 
         productMap.put(nextId, new PhysicalProduct(nextId, "Monitor", 299.99, 5.4, "1280x720"));
         nextId++;
-        productMap.put(nextId, new DigitalProduct(nextId, "E-Book", 99.99, "url/digital", 3.5));
+        productMap.put(nextId, new DigitalProduct(nextId, "E-Book - A", 99.99, "url/digital", 3.5));
         nextId++;
         productMap.put(nextId, new PhysicalProduct(nextId, "Mug", 8.50, 0.3, null));
         nextId++;
-        productMap.put(nextId, new DigitalProduct(nextId, "E-book", 9.99, "/dl/2", 4.2));
+        productMap.put(nextId, new DigitalProduct(nextId, "E-book - B", 9.99, "/dl/2", 4.2));
         nextId++;
         productMap.put(nextId, new DigitalProduct(nextId, "Audiobook", 14.99, "/dl/3", 92.0));
+        nextId++;
+        productMap.put(nextId, new BundleProduct(nextId,  "E-Books", 108.0, List.of(productMap.get(2L), productMap.get(4L))));
         nextId++;
     }
 
